@@ -7,7 +7,7 @@ class ArchiveMenu {
 
     fun start() {
         items.add(MenuItem("Создать архив", action = { creatingArchive() }))
-        val menu = Menu("Список архивов", items, input)
+        val menu = Menu("Список архивов:", items, input)
         menu.start()
     }
 
@@ -16,7 +16,7 @@ class ArchiveMenu {
             println("Введите имя архива!")
             val userInput = input.nextLine()
 
-            //Про метод isBlank() подсказал ИИ, чтобы не писать userInput.trim().isEmpty()
+            //Про метод isBlank() подсказала Алиса :), чтобы не писать userInput.trim().isEmpty()
             if (userInput.isBlank()) {
                 println("Вы ничего не ввели, пожалуйста, введите имя архива!")
             } else {

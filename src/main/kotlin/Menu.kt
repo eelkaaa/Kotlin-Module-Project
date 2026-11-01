@@ -2,7 +2,7 @@ import java.util.Scanner
 
 class Menu(val headingMenu: String, val items: MutableList<MenuItem>, val scanner: Scanner) {
     fun menu() {
-        println("$headingMenu:")
+        println("$headingMenu")
         for ((menuNumber, item) in items.withIndex()) {
             println("$menuNumber. ${item.name}")
         }

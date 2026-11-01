@@ -8,10 +8,10 @@ class NoteMenu(val archive: Archive, val scanner: Scanner ) {
         items.add(MenuItem("Создать заметку", action = { creatingNote() }))
 
         for (note in archive.notes) {
-            items.add(MenuItem(note.name, action = { println(note.content) }))
+            items.add(MenuItem(note.name, action = { showNote(note) }))
         }
 
-        val menu = Menu("Список заметок", items, scanner)
+        val menu = Menu("Список заметок:", items, scanner)
         menu.start()
     }
 
@@ -40,8 +40,14 @@ class NoteMenu(val archive: Archive, val scanner: Scanner ) {
             }
         }
 
-        archive.notes.add(Note(userInputNoteName, userInputNoteContent))
-        items.add(MenuItem(userInputNoteName, action = { println(userInputNoteContent) }))
+        val note = Note(userInputNoteName, userInputNoteContent)
+        archive.notes.add(note)
+        items.add(MenuItem(userInputNoteName, action = { showNote(note) }))
         return
+    }
+
+    fun showNote(note: Note) {
+        val menu = Menu(note.content, mutableListOf(), scanner)
+        menu.start()
     }
 }
