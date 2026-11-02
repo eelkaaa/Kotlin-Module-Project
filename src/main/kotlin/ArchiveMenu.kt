@@ -12,22 +12,13 @@ class ArchiveMenu {
     }
 
     fun creatingArchive() {
-        while (true) {
-            println("Введите имя архива!")
-            val userInput = input.nextLine()
+        val archiveName = readNonEmptyInput(input, "Введите имя архива!", "Вы ничего не ввели, пожалуйста, введите имя архива!")
 
-            //Про метод isBlank() подсказала Алиса :), чтобы не писать userInput.trim().isEmpty()
-            if (userInput.isBlank()) {
-                println("Вы ничего не ввели, пожалуйста, введите имя архива!")
-            } else {
-                val archive = Archive(userInput)
-                mutableArchivesList.add(archive)
-                items.add(MenuItem(userInput, action = {
-                    val note = NoteMenu(archive, input)
-                    note.start()
-                }))
-                return
-            }
-        }
+        val archive = Archive(archiveName)
+        mutableArchivesList.add(archive)
+        items.add(MenuItem(archiveName, action = {
+            val note = NoteMenu(archive, input)
+            note.start()
+        }))
     }
 }
